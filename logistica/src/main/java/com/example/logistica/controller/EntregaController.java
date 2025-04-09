@@ -4,6 +4,7 @@ import com.example.logistica.service.observer.ClienteNotificador;
 import com.example.logistica.service.observer.InternoNotificador;
 import com.example.logistica.service.observer.SistemaNotificacao;
 import com.example.logistica.service.strategy.FreteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EntregaController {
 
     private final FreteService freteService;
+    @Autowired
     private final SistemaNotificacao sistemaNotificacao;
 
     // Injeção de dependência pelo construtor

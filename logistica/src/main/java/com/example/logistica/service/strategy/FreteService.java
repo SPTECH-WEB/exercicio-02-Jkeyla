@@ -20,6 +20,6 @@ public class FreteService {
     public static double calcular(String tipo, double peso) {
         FreteStrategy estrategia = estrategias.get(tipo.toLowerCase());
         if (estrategia == null) throw new IllegalArgumentException("Tipo de entrega inválido");
-        return estrategia.calcularFrete(peso);
+        return estrategia.hashCode();
     }
 }
