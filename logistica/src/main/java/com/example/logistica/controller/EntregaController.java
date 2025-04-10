@@ -15,22 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class EntregaController {
 
     private final FreteService freteService;
-    @Autowired
     private final SistemaNotificacao sistemaNotificacao;
 
-    // Injeção de dependência pelo construtor
+    @Autowired
     public EntregaController(FreteService freteService, SistemaNotificacao sistemaNotificacao) {
         this.freteService = freteService;
         this.sistemaNotificacao = sistemaNotificacao;
-
-        // Adicionando os notificadores ao sistema
-        sistemaNotificacao.notificar(new ClienteNotificador().toString());
-        sistemaNotificacao.notificar(new InternoNotificador().toString());
     }
 
     @GetMapping("/calcular")
-    public String calcularFrete(@RequestParam String tipo ,@RequestParam double peso) {
-        double valorFrete = FreteService.calcular(tipo, peso);
+    public String calcularFrete(@RequestParam String tipo, @RequestParam double peso) {
+        double valorFrete = freteService.calcular(tipo, peso);
 
         sistemaNotificacao.notificar("Entrega concluída! Valor do frete: R$ " + valorFrete);
         return "Frete: R$" + valorFrete;
